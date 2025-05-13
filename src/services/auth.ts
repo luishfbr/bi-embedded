@@ -13,7 +13,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   pages: {
     signIn: "/",
-    error: "/auth/error",
-    verifyRequest: "/auth/verify-request",
+    signOut: "/",
+    error: "/", // Error code passed in query string as ?error=
+    verifyRequest: "/", // (used for check email message)
+    newUser: "/dashboard", // Will disable the new account creation screen
+  },
+  callbacks: {
+    authorized: async ({ auth }) => {
+      // Logged in users are authenticated, otherwise redirect to login page
+      return !!auth;
+    },
   },
 });
