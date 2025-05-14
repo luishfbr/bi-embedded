@@ -106,6 +106,24 @@ export const getUserGroups = async (userId: string) => {
   }
 };
 
+export const getUserOffGroups = async (userId: string) => {
+  try {
+    const groups = await prisma.group.findMany({
+      where: {
+        users: {
+          none: {
+            id: userId,
+          },
+        },
+      },
+    });
+    return groups;
+  } catch (error) {
+    console.error("Error fetching users off group", error);
+    return [];
+  }
+};
+
 // Group management actions
 export const getAllGroups = async () => {
   try {
@@ -173,6 +191,24 @@ export const getGroupUsers = async (groupId: string) => {
     return group?.users || [];
   } catch (error) {
     console.error("Error fetching group users:", error);
+    return [];
+  }
+};
+
+export const getGroupOffUsers = async (groupId: string) => {
+  try {
+    const users = await prisma.user.findMany({
+      where: {
+        groups: {
+          none: {
+            id: groupId,
+          },
+        },
+      },
+    });
+    return users;
+  } catch (error) {
+    console.error("Error fetching group off users:", error);
     return [];
   }
 };

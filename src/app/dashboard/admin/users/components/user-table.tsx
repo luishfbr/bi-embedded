@@ -9,28 +9,37 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { Group } from "@prisma/client";
+import type { User } from "@prisma/client";
 import { Menu } from "lucide-react";
+import { UsersList } from "./user-groups";
 
-interface TableGroupsProps {
-  groups: Group[];
+interface TableUsersProps {
+  users: User[];
 }
 
-export function Grouptable({ groups }: TableGroupsProps) {
+export function TableUsers({ users }: TableUsersProps) {
   return (
     <ScrollArea className="h-64 w-full">
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead>Nome</TableHead>
+            <TableHead>Email</TableHead>
+            <TableHead>Atribuição</TableHead>
+            <TableHead>Grupos</TableHead>
             <TableHead>Menu</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          {groups.map((group, index) => (
+          {users.map((user, index) => (
             <TableRow key={index}>
-              <TableCell>{group.name || "Não disponível"}</TableCell>
+              <TableCell>{user.name || "Não disponível"}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.role}</TableCell>
+              <TableCell>
+                <UsersList user={user} />
+              </TableCell>
               <TableCell>
                 <Menu />
               </TableCell>

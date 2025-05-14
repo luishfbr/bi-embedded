@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar user={user} />
-      <main className="p-4 border-border border rounded-md m-2 w-full shadow-sm">
+      <main className="p-2 border-border border rounded-md m-2 w-full shadow-sm">
         {children}
       </main>
     </SidebarProvider>
