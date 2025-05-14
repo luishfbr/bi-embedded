@@ -3,10 +3,14 @@
 import { auth, signIn, signOut } from "@/services/auth";
 
 export const LoginWithMagicLink = async (email: string) => {
-  await signIn("nodemailer", {
+  const res = await signIn("nodemailer", {
     email,
-    redirectTo: "/dashboard",
+    redirect: false,
   });
+
+  if (res?.error) {
+    return false;
+  }
 };
 
 export const Logout = async () => {
@@ -18,7 +22,7 @@ export const Logout = async () => {
 export const GetSession = async () => {
   const res = await auth();
   if (res) {
-    return true;
+    return res;
   }
   return null;
 };

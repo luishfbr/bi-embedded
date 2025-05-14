@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
+import Nodemailer from "next-auth/providers/nodemailer";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/services/prisma";
-import Nodemailer from "next-auth/providers/nodemailer";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -13,15 +13,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   pages: {
     signIn: "/",
-    signOut: "/",
-    error: "/", // Error code passed in query string as ?error=
-    verifyRequest: "/", // (used for check email message)
-    newUser: "/dashboard", // Will disable the new account creation screen
+    signOut: "/dashboard",
+    error: "/",
+    verifyRequest: "/dashboard",
+    newUser: "/dashboard",
   },
-  callbacks: {
-    authorized: async ({ auth }) => {
-      // Logged in users are authenticated, otherwise redirect to login page
-      return !!auth;
-    },
+  session: {
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
   },
 });
