@@ -1,16 +1,48 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const url =
-    "https://app.powerbi.com/reportEmbed?reportId=e40cab6a-20fe-49bd-8749-2d4fbc9d277b&autoAuth=true&ctid=28b886f2-1894-4dda-9cf2-066ad2e94c2c";
+  const searchParams = useSearchParams();
+  const [mounted, setMounted] = useState(false);
+  const [url, setUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    setMounted(true); // Só renderiza após montagem
+    const param = searchParams.get("url");
+    setUrl(param);
+  }, [searchParams]);
+
+  const isValidUrl = (input: string | null) => {
+    if (!input) return false;
+    try {
+      new URL(input);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  if (!mounted) {
+    return null; // Evita hidratação prematura
+  }
+
   return (
-    <div className="flex items-center justify-center h-full w-full mx-auto">
-      {url ? (
-        <iframe title="Capital Premiado" width="100%" height="100%" src={url} />
+    <div className="flex items-center justify-center w-full h-full bg-background px-12">
+      {isValidUrl(url) ? (
+        <div className="w-full h-full max-w-screen-xl">
+          <iframe
+            title="Painel Integrado"
+            src={url!}
+            className="w-full h-full border-none rounded-xl shadow-lg"
+            allowFullScreen
+          />
+        </div>
       ) : (
-        <span className="text-muted-foreground">Selecione um painél</span>
+        <p className="text-muted-foreground text-lg text-center">
+          Nenhum painel selecionado ou URL inválida.
+        </p>
       )}
     </div>
   );

@@ -23,12 +23,14 @@ import {
   getUserGroups,
 } from "@/app/dashboard/admin/_actions";
 import { Group, type Panel } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 interface props {
   id: string;
 }
 
 export function NavMain({ id }: props) {
+  const route = useRouter();
   const [groups, setGroups] = React.useState<Group[]>([]);
   const [panels, setPanels] = React.useState<Panel[]>([]);
 
@@ -80,7 +82,13 @@ export function NavMain({ id }: props) {
                 <SidebarMenuSub>
                   {panels.map((panel) => (
                     <SidebarMenuSubItem key={panel.id}>
-                      <SidebarMenuSubButton asChild>
+                      <SidebarMenuSubButton
+                      className="cursor-pointer"
+                        onClick={() =>
+                          route.push(`/dashboard?url=${panel.url}`)
+                        }
+                        asChild
+                      >
                         <span>{panel.name}</span>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
