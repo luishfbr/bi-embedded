@@ -41,13 +41,16 @@ export function NavUser({ user }: { user: User }) {
                   {user.name
                     ? user.name
                         .split(" ")
+                        .slice(0, 2)
                         .map((n) => n[0])
                         .join("")
                     : "NN"}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
+                <span>
+                  {user.name ? user.name.split(" ").slice(0, 2).join(" ") : ""}
+                </span>
                 <span className="truncate text-xs">{user.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />

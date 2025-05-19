@@ -33,7 +33,7 @@ export function AppSidebar({
 }: React.ComponentProps<typeof Sidebar> & { user?: User }) {
   const { user } = props;
   return (
-    <Sidebar collapsible="icon" variant="floating" {...props}>
+    <Sidebar collapsible="offcanvas" variant="floating" {...props}>
       <SidebarHeader>
         <TeamSwitcher />
       </SidebarHeader>

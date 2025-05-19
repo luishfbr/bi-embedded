@@ -66,7 +66,7 @@ export function UsersList({ user }: Props) {
           <Eye />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[60vw]">
+      <DialogContent className="sm:max-w-[70%]">
         <div className="w-full flex flex-row justify-between gap-4">
           <div className="w-full">
             <DialogHeader className="pb-4">

@@ -12,6 +12,7 @@ export default function Page() {
 
   const fetchUsers = React.useCallback(async () => {
     try {
+      setLoading(true);
       const res = await getAllUsers();
       if (res) {
         setUsers(res);
@@ -31,5 +32,5 @@ export default function Page() {
     return <LoadingPage />;
   }
 
-  return <TableUsers users={users} />;
+  return <TableUsers users={users} update={fetchUsers} />;
 }

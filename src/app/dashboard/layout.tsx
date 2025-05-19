@@ -1,6 +1,6 @@
 "use client";
 
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { GetSession } from "../_actions";
@@ -25,7 +25,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar user={user} />
-      <main className="p-2 border-border border rounded-md m-2 w-full shadow-sm">
+      <main className="p-2 border-border border flex flex-col rounded-md m-2 w-full shadow-sm">
+        <SidebarTrigger className="absolute" />
         {children}
       </main>
     </SidebarProvider>

@@ -10,14 +10,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { User } from "@prisma/client";
-import { Menu } from "lucide-react";
 import { UsersList } from "./user-groups";
+import { UserActions } from "./actions-button";
 
 interface TableUsersProps {
   users: User[];
+  update: () => void;
 }
 
-export function TableUsers({ users }: TableUsersProps) {
+export function TableUsers({ users, update }: TableUsersProps) {
   return (
     <ScrollArea className="h-64 w-full">
       <Table>
@@ -27,7 +28,7 @@ export function TableUsers({ users }: TableUsersProps) {
             <TableHead>Email</TableHead>
             <TableHead>Atribuição</TableHead>
             <TableHead>Grupos</TableHead>
-            <TableHead>Menu</TableHead>
+            <TableHead>Ações</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -41,7 +42,7 @@ export function TableUsers({ users }: TableUsersProps) {
                 <UsersList user={user} />
               </TableCell>
               <TableCell>
-                <Menu />
+                <UserActions user={user} onUpdate={() => update()} />
               </TableCell>
             </TableRow>
           ))}

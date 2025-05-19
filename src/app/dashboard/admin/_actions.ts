@@ -124,6 +124,23 @@ export const getUserOffGroups = async (userId: string) => {
   }
 };
 
+export const editUserName = async (userId: string, name: string) => {
+  try {
+    const res = await prisma.user.update({
+      where: {
+        id: userId as string,
+      },
+      data: {
+        name: name,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 // Group management actions
 export const getAllGroups = async () => {
   try {
@@ -242,7 +259,6 @@ export const createPanel = async (data: Panel) => {
     const panel = await prisma.panel.create({
       data: {
         ...data,
-        groupId: "none", // Default group ID
       },
     });
     return panel;
@@ -267,9 +283,11 @@ export const updatePanel = async (panelId: string, data: Partial<Panel>) => {
 
 export const deletePanel = async (panelId: string) => {
   try {
-    await prisma.panel.delete({
+    const res = await prisma.panel.delete({
       where: { id: panelId },
     });
+
+    return res;
   } catch (error) {
     console.error("Error deleting panel:", error);
   }
