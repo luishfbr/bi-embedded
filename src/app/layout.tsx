@@ -25,11 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <head/>
+      <head />
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          {children}
+        {children}
         <Toaster />
       </body>
     </html>

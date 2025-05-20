@@ -2,9 +2,8 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import type { Group } from "@prisma/client";
-import { UserActions } from "../../../users/components/actions-button";
-import { DeleteButton } from "../../../groups/components/deleteButton";
-import { UsersList } from "../../../groups/components/users-list";
+import { UsersList } from "../components/users-list";
+import { DeleteButton } from "../components/deleteButton";
 
 export const getUserColumns = (update: () => void): ColumnDef<Group>[] => [
   {

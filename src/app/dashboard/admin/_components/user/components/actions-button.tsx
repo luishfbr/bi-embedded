@@ -4,20 +4,17 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { User } from "@prisma/client";
 import { AlignJustify, Edit, Trash } from "lucide-react";
-import { DeleteUser } from "./delete-user";
-import { EditUser } from "./edit-user";
 import React from "react";
 import { GetSession } from "@/app/_actions";
 import { useRouter } from "next/navigation";
+import { EditUser } from "./edit-user";
+import { DeleteUser } from "./delete-user";
 
 interface props {
   user: User;

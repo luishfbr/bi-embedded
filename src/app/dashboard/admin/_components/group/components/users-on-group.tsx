@@ -13,7 +13,7 @@ import type { Group, User } from "@prisma/client";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
-import { removeUserFromGroup } from "../../_actions";
+import { removeUserFromGroup } from "../../../_actions";
 
 interface Props {
   users: User[];

@@ -10,30 +10,37 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import type { Group } from "@prisma/client";
-import { Trash2 } from "lucide-react";
+import type { User } from "@prisma/client";
 import { toast } from "sonner";
-import { deleteGroup } from "../../_actions";
+import { Trash2 } from "lucide-react";
+import { deleteUser } from "../../../_actions";
 
 interface Props {
-  group: Group;
+  user: User;
   onDelete: () => void;
+  userSessionId: string;
 }
 
-export function DeleteButton({ group, onDelete }: Props) {
+export function DeleteUser({ user, onDelete, userSessionId }: Props) {
   const handleDelete = async () => {
     try {
-      await deleteGroup(group.id as string);
+      await deleteUser(user.id as string);
       onDelete();
     } catch (error) {
       console.error(error);
-      toast.error("Falha ao remover grupo.");
+      toast.error("Falha ao remover usuário.");
     }
   };
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="ghost" size={"icon"}>
+      <AlertDialogTrigger className="w-full p-0 m-0" asChild>
+        <Button
+          variant={"ghost"}
+          size={"default"}
+          className="w-full font-normal justify-between p-0 m-0"
+          disabled={userSessionId === user.id}
+        >
+          <span>Excluir</span>
           <Trash2 />
         </Button>
       </AlertDialogTrigger>
@@ -41,11 +48,11 @@ export function DeleteButton({ group, onDelete }: Props) {
         <AlertDialogHeader>
           <AlertDialogTitle>Você tem certeza?</AlertDialogTitle>
           <AlertDialogDescription>
-            Esta ação não pode ser desfeita, fique atento ao grupo que está
+            Esta ação não pode ser desfeita, fique atento ao usuário que está
             excluindo.
             <br />
             <br />
-            Grupo: {group.name}
+            Usuário: {user.name || user.email}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

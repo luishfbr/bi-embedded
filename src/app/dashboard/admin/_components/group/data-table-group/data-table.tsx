@@ -24,7 +24,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { Group } from "@prisma/client";
-import { AddGroup } from "../../../groups/components/add-group";
+import { AddGroup } from "../components/add-group";
 
 interface DataTableProps {
   columns: ColumnDef<Group>[];

@@ -14,7 +14,7 @@ import type { User } from "@prisma/client";
 import { Edit } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { editUserName } from "../../_actions";
+import { editUserName } from "../../../_actions";
 
 interface props {
   user: User;

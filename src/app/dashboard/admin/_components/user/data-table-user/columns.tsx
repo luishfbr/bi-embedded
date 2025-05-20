@@ -6,7 +6,7 @@ import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import type { User } from "@prisma/client";
-import { UserActions } from "../../../users/components/actions-button";
+import { UserActions } from "../components/actions-button";
 
 export const getUserColumns = (update: () => void): ColumnDef<User>[] => [
   {

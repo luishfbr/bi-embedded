@@ -10,7 +10,7 @@ import {
 import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { createGroup } from "../../_actions";
+import { createGroup } from "../../../_actions";
 
 interface Props {
   onUpdate: () => void;

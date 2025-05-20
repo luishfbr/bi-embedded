@@ -10,7 +10,6 @@ import {
 import { type User, type Group, type Panel } from "@prisma/client";
 import { getAllGroups, getAllPanels, getAllUsers } from "./_actions";
 import { toast } from "sonner";
-import { TableUsers } from "./users/components/user-table";
 import UserMain from "./_components/user/main";
 import GroupMain from "./_components/group/main";
 import PanelMain from "./_components/panel/main";

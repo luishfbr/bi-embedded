@@ -123,7 +123,7 @@ export function DataTablePanels({ columns, data, update }: DataTableProps) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  Nenhum usuário encontrado.
+                  Nenhum painél encontrado.
                 </TableCell>
               </TableRow>
             )}

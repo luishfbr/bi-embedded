@@ -14,8 +14,8 @@ import { Eye } from "lucide-react";
 import { UsersOnGroup } from "./users-on-group";
 import { User, type Group } from "@prisma/client";
 import { toast } from "sonner";
-import { getGroupOffUsers, getGroupUsers } from "../../_actions";
 import { UsersOnSistem } from "./add-users-on-group";
+import { getGroupOffUsers, getGroupUsers } from "../../../_actions";
 
 interface Props {
   group: Group;

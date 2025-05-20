@@ -85,7 +85,7 @@ export function NavMain({ id }: props) {
                       <SidebarMenuSubButton
                       className="cursor-pointer"
                         onClick={() =>
-                          route.push(`/dashboard?url=${panel.url}`)
+                          route.push(`/dashboard?panelId=${panel.id}`)
                         }
                         asChild
                       >
