@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    container_name: bi-embedded
+    ports:
+      - "5443:5443"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      DATABASE_URL: "file:./dev.db"
+    command: ["npm", "run", "dev"]
